@@ -1,0 +1,51 @@
+:root{
+  --primary-color:#87b5b5;
+  --secondary-color:black;
+  --header-color:#4aa3a3;
+  --box-shdow:1px 1px 10px 2px #3a5f5f;
+}
+
+body{
+  margin:0;
+}
+.container{
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  place-items: center;
+  padding-top:2rem ;
+
+}
+
+.flex{
+  display: flex;
+}
+.border{
+  border: 2px solid red;
+}
+.editor {
+  min-width: none;
+  
+}
+.editor .editor-content{
+  flex-direction: column;
+}
+.editor-header{
+  padding: .5rem;
+  justify-content: space-between;
+  background-color: var(--header-color);
+  border:1px solid black;
+  box-shadow: var(--box-shdow);
+}
+
+textarea{
+  resize: vertical;
+  
+}
+.previewer{
+  width: 80%;
+  min-height: 250px;
+  margin-top: 20px;
+}
