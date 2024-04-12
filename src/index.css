@@ -22,9 +22,7 @@ body{
 .flex{
   display: flex;
 }
-.border{
-  border: 2px solid red;
-}
+
 .editor {
   min-width: 200px;
   
@@ -43,6 +41,7 @@ body{
 textarea{
   resize: vertical;
   background-color: #c0d8d8;
+  min-height: 200px;
   
 }
 .previewer{
