@@ -1,52 +1,62 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 function App() {
-  const [editor, setEditor] = useState("");
+  const testmarkdown = `
+# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+
+There's also [links](https://www.freecodecamp.org), and
+> Block Quotes!
+
+And if you want to get really crazy, even tables:
+
+Wild Header | Crazy Header | Another Header?
+------------ | ------------- | -------------
+Your content can | be here, and it | can be here....
+And here. | Okay. | I think we get it.
+
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbered lists too.
+1. Use just 1s if you want!
+1. And last but not least, let's not forget embedded images:
+
+![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+`;
+
+  const [markdownText, setMarkdownText] = useState(testmarkdown);
 
   const handleChange = (e) => {
-    setEditor(e.target.value);
-  };
-
-  const convertToHtml = (markdown) => {
-    // Convert markdown to HTML here
-    const lines = markdown.split("\n");
-    console.log(lines);
-    const htmlLines = lines.map((line) => {
-      return switcher(line);
-    });
-    return htmlLines.join("");
-  };
- 
-  const switcher = (line) => {
-    if (line.startsWith("# ")) {
-      return `<h1>${line.slice(2)}</h1>`;
-    } else if (line.startsWith("## ")) {
-      return `<h2>${line.slice(3)}</h2>`;
-    } else if (line.startsWith("### ")) {
-      return `<h3>${line.slice(4)}</h3>`;
-    }
-    else
-      return escapeHtml(line);
-  };
-
-  const escapeHtml = (text) => {
-    const htmlEntities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;", 
-      
-      // &apos; is not supported in HTML4
-    };
-    text=text.replace(/[&<>"']/g, (entity) => htmlEntities[entity]);
-    
-    return text;
+    setMarkdown(e.target.value);
   };
   return (
     <div className="container flex">
       <div className="editor border">
-        <div className="flex editor-content">
+        <div className=" editor-content">
           <div className="flex editor-header">
             <div>
               <i class="fa-brands fa-free-code-camp"></i>
@@ -55,10 +65,10 @@ function App() {
             <i class="fa-solid fa-maximize"></i>
           </div>
           <textarea
-            name="editor"
-            id="editor"
+            name="markdown"
+            id="markdown"
             cols={60}
-            value={editor}
+            value={markdownText}
             onChange={(e) => handleChange(e)}
           ></textarea>
         </div>
@@ -72,7 +82,7 @@ function App() {
           <i class="fa-solid fa-maximize"></i>
         </div>
         <div className="previewer-content" id="preview">
-          <div dangerouslySetInnerHTML={{ __html: convertToHtml(editor) }} />
+          <ReactMarkdown>{markdownText}</ReactMarkdown>
         </div>
       </div>
     </div>

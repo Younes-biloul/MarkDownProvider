@@ -26,7 +26,7 @@ body{
   border: 2px solid red;
 }
 .editor {
-  min-width: none;
+  min-width: 200px;
   
 }
 .editor .editor-content{
@@ -42,10 +42,28 @@ body{
 
 textarea{
   resize: vertical;
+  background-color: #c0d8d8;
   
 }
 .previewer{
   width: 80%;
-  min-height: 250px;
+  background-color: #c0d8d8;
   margin-top: 20px;
+ 
+
+  
+}
+.previewer-content{
+  padding: 1rem;
+   overflow-y: auto;
+max-height: 400px;
+
+}
+.previewer p img{
+  max-width: 80%;
+
+}
+.previewer pre, .previewer code{
+    background-color: white;
+    padding: 0.2rem .5rem;
 }
